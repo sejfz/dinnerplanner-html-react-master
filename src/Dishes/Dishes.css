@@ -1,11 +1,15 @@
 .cardDiv {
   border-color: black;
   border-style: solid;
-  border-width: 3px;
   margin: 10px;
   display: inline-block;
+  width: auto;
 }
 
 .Dishes {
   flex-wrap: wrap;
+}
+
+#titleDiv {
+  width: 200px;
 }
