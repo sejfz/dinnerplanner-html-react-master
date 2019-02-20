@@ -1,15 +1,18 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import "./Welcome.css";
+import "bootstrap/dist/css/bootstrap.css";
 
 class Welcome extends Component {
   render() {
     return (
       <div className="Welcome">
-        <p>Welcome to the dinner planner React Startup code!</p>
+        <p>Welcome to Celias dinner planner!</p>
 
         <Link to="/search">
-          <button>Start planning</button>
+          <button type="button" class="btn btn-outline-warning">
+            Start planning
+          </button>
         </Link>
       </div>
     );
