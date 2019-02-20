@@ -6,7 +6,7 @@ import "bootstrap/dist/css/bootstrap.css";
 class Welcome extends Component {
   render() {
     return (
-      <div className="Welcome">
+      <div className="Welcome" align="center">
         <p>Welcome to Celias dinner planner!</p>
 
         <Link to="/search">

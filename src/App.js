@@ -17,7 +17,9 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <h1 className="App-title">{this.state.title}</h1>
+          <h1 className="App-title" align="center">
+            {this.state.title}
+          </h1>
 
           {/* We rended diffrent component based on the path */}
           <Route exact path="/" component={Welcome} />
