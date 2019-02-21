@@ -55,7 +55,11 @@ class Dishes extends Component {
               width="200px"
             />
             <br />
-            <button type="button" class="btn btn-outline-danger" value={dish.id}>
+            <button
+              type="button"
+              class="btn btn-outline-danger"
+              value={dish.id}
+            >
               Go to dish page
             </button>
             <br />
@@ -71,12 +75,28 @@ class Dishes extends Component {
     return (
       <div className="Dishes" class="col-sm-9">
         <div class="input-group">
-          <input type="text" placeholder="Enter Key Words"/>
-           <span class="input-group-btn">
-            <button class="btn btn-search" type="button"><i class="fa fa-search fa-fw"></i> Search</button>
+          <input type="text" placeholder="Enter Key Words" />
+          <select id="allTypes">
+            <option value="all">All</option>
+            <option value="side+dish">Side Dish</option>
+            <option value="main+course">Main Course</option>
+            <option value="dessert">Dessert</option>
+            <option value="appetizer">Appetizer</option>
+            <option value="beverage">Beverage</option>
+            <option value="bread">Bread</option>
+            <option value="breakfast">Breakfast</option>
+            <option value="drink">Drink</option>
+            <option value="salad">Salad</option>
+            <option value="sauce">Sauce</option>
+            <option value="soup">Soup</option>
+          </select>
+          <span class="input-group-btn">
+            <button class="btn btn-search" type="button">
+              <i class="fa fa-search fa-fw" /> Search
+            </button>
           </span>
-        <br />
-      </div>
+          <br />
+        </div>
         <h3>Dishes</h3>
         {dishesList}
       </div>

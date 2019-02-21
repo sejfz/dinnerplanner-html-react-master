@@ -1,13 +1,14 @@
 #sideb {
-  width: 8, 33%;
   float: left;
-  padding-right: 50px;
-  height: 100%;
-  top: 0px;
-  left: 0px;
-  z-index: 1000;
+
   border-style: solid;
   border-color: darkgrey;
+  padding: 0%;
+}
+
+#navId {
+  padding: 0%;
+  padding-left: 8%;
 }
 
 #summaryDiv {
