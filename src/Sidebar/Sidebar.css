@@ -1,0 +1,23 @@
+#sideb {
+  width: 8, 33%;
+  float: left;
+  padding-right: 50px;
+  height: 100%;
+  top: 0px;
+  left: 0px;
+  z-index: 1000;
+  border-style: solid;
+  border-color: darkgrey;
+}
+
+#summaryDiv {
+  border-style: ridge;
+  border-color: darkgrey;
+  border-radius: 5px;
+  background-color: beige;
+  flex-direction: row;
+  padding: 0px;
+  font-weight: 560;
+  padding-left: 25px;
+  padding-right: 25px;
+}

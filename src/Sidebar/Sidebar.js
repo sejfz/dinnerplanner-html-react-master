@@ -39,18 +39,54 @@ class Sidebar extends Component {
 
   render() {
     return (
-      <div className="Sidebar">
-        <p>
-          People:
-          <input
-            type="number"
-            value={this.state.numberOfGuests}
-            size="3"
-            onChange={this.onNumberOfGuestsChanged}
-          />
-          <br />
-          Total number of guests: {this.state.numberOfGuests}
-        </p>
+      <div id="sideb" className="Sidebar" class="col-sm-3">
+        <nav id="navId" class="navbar navbar-expand-sm navbar-light">
+          <button
+            type="button"
+            class="navbar-toggler"
+            data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-expanded="false"
+            aria-controls="navbarSupportedContent"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon" />
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="nav navbar-nav collapse navbar-collapse">
+              <h4 class="col-sm-12">My Dinner</h4>
+              <p>
+                People:
+                <input
+                  type="number"
+                  value={this.state.numberOfGuests}
+                  size="3"
+                  onChange={this.onNumberOfGuestsChanged}
+                />
+                <br />
+                Total number of guests: {this.state.numberOfGuests}
+              </p>
+              <div id="summaryDiv" class="col-sm-12">
+                <div id="summaryBar" class="row">
+                  <p class="col-6">Dish Name</p>
+                  <p class="col-6" align="right">
+                    Cost
+                  </p>
+                </div>
+              </div>
+              <span id="menuDishes" />
+              <br />
+              <div id="priceId" class="col-sm-12" />
+              <div align="right" class="col-sm-12" id="finalId">
+                Total:
+                <span id="totalPrice" />
+              </div>
+              <button class="btn btn-warning" id="confirmButtonId" disabled>
+                Confirm Dinner
+              </button>
+            </div>
+          </div>
+        </nav>
       </div>
     );
   }

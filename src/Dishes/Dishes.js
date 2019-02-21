@@ -68,7 +68,7 @@ class Dishes extends Component {
     }
 
     return (
-      <div className="Dishes">
+      <div className="Dishes" class="col-sm-9">
         <h3>Dishes</h3>
         {dishesList}
       </div>
