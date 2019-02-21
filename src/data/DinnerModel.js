@@ -1,5 +1,5 @@
 import ObservableModel from "./ObservableModel";
-import ourKey from "./ourKey";
+//import ourKey from "./ourKey";
 const BASE_URL = "http://sunset.nada.kth.se:8080/iprog/group/51/";
 const httpOptions = {
   headers: {
