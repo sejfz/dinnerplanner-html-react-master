@@ -10,7 +10,7 @@ const httpOptions = {
 class DinnerModel extends ObservableModel {
   constructor() {
     super();
-    this._numberOfGuests = 3;
+    this._numberOfGuests = 1;
     this.getNumberOfGuests();
   }
 
@@ -28,6 +28,9 @@ class DinnerModel extends ObservableModel {
    */
   setNumberOfGuests(num) {
     this._numberOfGuests = num;
+    if (this._numberOfGuests < 1) {
+      this._numberOfGuests = 1;
+    }
     this.notifyObservers();
   }
 
