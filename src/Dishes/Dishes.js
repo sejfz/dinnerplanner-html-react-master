@@ -3,6 +3,7 @@ import React, { Component } from "react";
 // we can import the model instance directly
 import modelInstance from "../data/DinnerModel";
 import "./Dishes.css";
+import "bootstrap/dist/css/bootstrap.css";
 
 class Dishes extends Component {
   constructor(props) {
@@ -54,7 +55,7 @@ class Dishes extends Component {
               width="200px"
             />
             <br />
-            <button type="button" value={dish.id}>
+            <button type="button" class="btn btn-outline-danger" value={dish.id}>
               Go to dish page
             </button>
             <br />
@@ -69,6 +70,13 @@ class Dishes extends Component {
 
     return (
       <div className="Dishes" class="col-sm-9">
+        <div class="input-group">
+          <input type="text" placeholder="Enter Key Words"/>
+           <span class="input-group-btn">
+            <button class="btn btn-search" type="button"><i class="fa fa-search fa-fw"></i> Search</button>
+          </span>
+        <br />
+      </div>
         <h3>Dishes</h3>
         {dishesList}
       </div>

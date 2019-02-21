@@ -13,3 +13,12 @@
 #titleDiv {
   width: 200px;
 }
+
+.btn-search {
+  background: #cc7070;
+  border-radius: 0;
+  color: #fff;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #cc7070;
+}
