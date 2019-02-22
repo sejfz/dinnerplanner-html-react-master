@@ -97,7 +97,9 @@ class Dishes extends Component {
           </span>
           <br />
         </div>
-        <div align="center"><h3>Sample dishes</h3></div>
+        <h3>Sample dishes</h3>
+        <p>Please use the search function for more dish options!</p>
+
         {dishesList}
       </div>
     );
