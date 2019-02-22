@@ -40,8 +40,14 @@ class DinnerModel extends ObservableModel {
    * Do an API call to the search API endpoint.
    * @returns {Promise<any>}
    */
-  getAllDishes() {
-    const url = `${BASE_URL}/recipes/search`;
+  getAllDishes(filter, type) {
+    const url =
+      BASE_URL +
+      "/recipes/search?query=" +
+      filter +
+      "&type=" +
+      type +
+      "&number=10";
     return fetch(url, httpOptions).then(this.processResponse);
   }
 

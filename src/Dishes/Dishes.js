@@ -11,8 +11,21 @@ class Dishes extends Component {
     // We create the state to store the various statuses
     // e.g. API data loading or error
     this.state = {
-      status: "LOADING"
+      status: "LOADING",
+      value: "all",
+      filter: ""
     };
+    this.valueUpdate = this.valueUpdate.bind(this);
+    this.submitClick = this.submitClick.bind(this);
+  }
+
+  valueUpdate(event) {
+    this.setState({ value: event.target.value });
+  }
+
+  submitClick(event) {
+    this.componentDidMount();
+    event.preventDefault();
   }
 
   // this methods is called by React lifecycle when the
@@ -22,7 +35,7 @@ class Dishes extends Component {
     // when data is retrieved we update the state
     // this will cause the component to re-render
     modelInstance
-      .getAllDishes()
+      .getAllDishes(this.state.filter, this.state.value)
       .then(dishes => {
         this.setState({
           status: "LOADED",
@@ -76,7 +89,11 @@ class Dishes extends Component {
       <div className="Dishes col-sm-9">
         <div className="input-group">
           <input type="text" placeholder="Enter Key Words" />
-          <select id="allTypes">
+          <select
+            id="allTypes"
+            value={this.state.value}
+            onChange={this.valueUpdate}
+          >
             <option value="all">All</option>
             <option value="side+dish">Side Dish</option>
             <option value="main+course">Main Course</option>
@@ -91,13 +108,19 @@ class Dishes extends Component {
             <option value="soup">Soup</option>
           </select>
           <span className="input-group-btn">
-            <button className="btn btn-search" type="button">
+            <button
+              className="btn btn-search"
+              type="button"
+              onClick={this.submitClick}
+            >
               <i className="fa fa-search fa-fw" /> Search
             </button>
           </span>
           <br />
         </div>
-        <div align="center"><h3>Sample dishes</h3></div>
+        <div align="center">
+          <h3>Sample dishes</h3>
+        </div>
         {dishesList}
       </div>
     );
