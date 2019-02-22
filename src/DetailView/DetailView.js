@@ -12,7 +12,8 @@ class DetailView extends Component {
     // We create the state to store the various statusess
     // e.g. API data loading or error
     this.state = {
-      status: "LOADING"
+      status: "LOADING",
+      dishId: ""
     };
   }
 
@@ -23,8 +24,9 @@ class DetailView extends Component {
     // when data is retrieved we update the state
     // this will cause the component to re-render
     modelInstance
-      .getAllDishes(this.state.filter, this.state.value)
+      .getSpecificDish(this.state.dishId)
       .then(dishes => {
+        console.log("hello man wtf is up");
         this.setState({
           status: "LOADED",
           dishes: dishes.results
@@ -49,24 +51,37 @@ class DetailView extends Component {
         break;
       case "LOADED":
         dishesList = this.state.dishes.map(dish => (
-          <div className="cardDiv" key={dish.id}>
-            <img
-              src={"https://spoonacular.com/recipeImages/" + dish.image}
-              height="150px"
-              width="200px"
-            />
-            <br />
-            <Link to="details">
+          <div>
+            <div id="displayView" className="col-sm-6" style="display: none">
+              <h3>{dish.title}</h3>
+              <p>{dish.image}</p>
               <button
+                id="backButton"
                 type="button"
-                className="btn btn-outline-danger"
-                value={dish.id}
+                className="btn btn-warning btn-sm"
               >
-                Go to dish page
+                Back to search
               </button>
-            </Link>
-            <br />
-            <div id="titleDiv">{dish.title}</div>
+              <h3>PREPARATION</h3>
+              <p>{dish.instructions}</p>
+            </div>
+
+            <div id="ingredView" className="col-sm-3" style="display: none">
+              <p>
+                <b>
+                  Ingredients for <span id="numpeep" /> people
+                </b>
+              </p>
+              {dish.extendedIngredients}
+
+              <button
+                id="addToMenu"
+                type="button"
+                className="btn btn-warning btn-sm"
+              >
+                Add to menu
+              </button>
+            </div>
           </div>
         ));
         break;
@@ -75,50 +90,7 @@ class DetailView extends Component {
         break;
     }
 
-    return (
-      <div className="Dishes col-sm-9">
-        <div className="input-group">
-          <input
-            type="text"
-            placeholder="Enter Key Words"
-            value={this.state.filter}
-            onChange={this.filterUpdate}
-          />
-          <select
-            id="allTypes"
-            value={this.state.value}
-            onChange={this.valueUpdate}
-          >
-            <option value="all">All</option>
-            <option value="side+dish">Side Dish</option>
-            <option value="main+course">Main Course</option>
-            <option value="dessert">Dessert</option>
-            <option value="appetizer">Appetizer</option>
-            <option value="beverage">Beverage</option>
-            <option value="bread">Bread</option>
-            <option value="breakfast">Breakfast</option>
-            <option value="drink">Drink</option>
-            <option value="salad">Salad</option>
-            <option value="sauce">Sauce</option>
-            <option value="soup">Soup</option>
-          </select>
-          <span className="input-group-btn">
-            <button
-              className="btn btn-search"
-              type="button"
-              onClick={this.submitClick}
-            >
-              <i className="fa fa-search fa-fw" /> Search
-            </button>
-          </span>
-          <br />
-        </div>
-        <div align="center">
-          <h3>Sample dishes</h3>
-        </div>
-        {dishesList}
-      </div>
-    );
+    return <div className="Dishes col-sm-9">{dishesList}</div>;
   }
 }
 

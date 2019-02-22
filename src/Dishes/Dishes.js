@@ -75,16 +75,16 @@ class Dishes extends Component {
             />
             <br />
             <Link to="details">
-            <button
-              type="button"
-              className="btn btn-outline-danger"
-              value={dish.id}
-            >
-              Go to dish page
-            </button>
+              <button
+                type="button"
+                className="btn btn-outline-danger"
+                value={dish.id}
+              >
+                Go to dish page
+              </button>
             </Link>
             <br />
-            <div id="titleDiv">{dish.title}</div>
+            <div className="titleDiv">{dish.title}</div>
           </div>
         ));
         break;
