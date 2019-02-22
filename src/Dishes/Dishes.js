@@ -97,7 +97,7 @@ class Dishes extends Component {
           </span>
           <br />
         </div>
-        <h3>Dishes</h3>
+        <div align="center"><h3>Sample dishes</h3></div>
         {dishesList}
       </div>
     );
