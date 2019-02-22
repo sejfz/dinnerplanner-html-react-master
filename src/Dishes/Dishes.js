@@ -4,7 +4,6 @@ import React, { Component } from "react";
 import modelInstance from "../data/DinnerModel";
 import "./Dishes.css";
 import "bootstrap/dist/css/bootstrap.css";
-import { Link } from "react-router-dom";
 
 class Dishes extends Component {
   constructor(props) {
@@ -18,10 +17,15 @@ class Dishes extends Component {
     };
     this.valueUpdate = this.valueUpdate.bind(this);
     this.submitClick = this.submitClick.bind(this);
+    this.filterUpdate = this.filterUpdate.bind(this);
   }
 
   valueUpdate(event) {
     this.setState({ value: event.target.value });
+  }
+
+  filterUpdate(event) {
+    this.setState({ filter: event.target.value });
   }
 
   submitClick(event) {
@@ -69,7 +73,6 @@ class Dishes extends Component {
               width="200px"
             />
             <br />
-            <Link to="/details">
             <button
               type="button"
               className="btn btn-outline-danger"
@@ -77,7 +80,6 @@ class Dishes extends Component {
             >
               Go to dish page
             </button>
-            </Link>
             <br />
             <div id="titleDiv">{dish.title}</div>
           </div>
@@ -91,7 +93,12 @@ class Dishes extends Component {
     return (
       <div className="Dishes col-sm-9">
         <div className="input-group">
-          <input type="text" placeholder="Enter Key Words" />
+          <input
+            type="text"
+            placeholder="Enter Key Words"
+            value={this.state.filter}
+            onChange={this.filterUpdate}
+          />
           <select
             id="allTypes"
             value={this.state.value}
