@@ -2,7 +2,7 @@
   float: left;
 
   border-style: solid;
-  border-color: darkgrey;
+  border-color: rgb(0, 0, 0);
   padding: 0%;
 }
 
@@ -12,10 +12,10 @@
 }
 
 #summaryDiv {
-  border-style: ridge;
-  border-color: darkgrey;
+  border-style: double;
+  border-color: rgb(0, 0, 0);
   border-radius: 5px;
-  background-color: beige;
+  background-color: rgb(253, 211, 211);
   flex-direction: row;
   padding: 0px;
   font-weight: 560;
