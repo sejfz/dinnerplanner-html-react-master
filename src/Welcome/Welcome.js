@@ -10,7 +10,7 @@ class Welcome extends Component {
         <p>Welcome to Celias dinner planner!</p>
 
         <Link to="/search">
-          <button type="button" className="btn btn-outline-warning">
+          <button type="button" className="btn btn-outline-danger">
             Start planning
           </button>
         </Link>
