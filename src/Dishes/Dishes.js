@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 class Dishes extends Component {
   constructor(props) {
     super(props);
-    // We create the state to store the various statuses
+    // We create the state to store the various statusess
     // e.g. API data loading or error
     this.state = {
       status: "LOADING",
