@@ -4,6 +4,7 @@ import React, { Component } from "react";
 import modelInstance from "../data/DinnerModel";
 import "./Dishes.css";
 import "bootstrap/dist/css/bootstrap.css";
+import { Link } from "react-router-dom";
 
 class Dishes extends Component {
   constructor(props) {
@@ -73,6 +74,7 @@ class Dishes extends Component {
               width="200px"
             />
             <br />
+            <Link to="details">
             <button
               type="button"
               className="btn btn-outline-danger"
@@ -80,6 +82,7 @@ class Dishes extends Component {
             >
               Go to dish page
             </button>
+            </Link>
             <br />
             <div id="titleDiv">{dish.title}</div>
           </div>
