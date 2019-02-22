@@ -1,9 +1,9 @@
 #sideb {
   float: left;
-
   border-style: solid;
   border-color: rgb(0, 0, 0);
   padding: 0%;
+  padding-right: 10px;
 }
 
 #navId {
