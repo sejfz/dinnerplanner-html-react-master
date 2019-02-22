@@ -12,26 +12,8 @@ class DetailView extends Component {
     // We create the state to store the various statusess
     // e.g. API data loading or error
     this.state = {
-      status: "LOADING",
-      value: "all",
-      filter: ""
+      status: "LOADING"
     };
-    this.valueUpdate = this.valueUpdate.bind(this);
-    this.submitClick = this.submitClick.bind(this);
-    this.filterUpdate = this.filterUpdate.bind(this);
-  }
-
-  valueUpdate(event) {
-    this.setState({ value: event.target.value });
-  }
-
-  filterUpdate(event) {
-    this.setState({ filter: event.target.value });
-  }
-
-  submitClick(event) {
-    this.componentDidMount();
-    event.preventDefault();
   }
 
   // this methods is called by React lifecycle when the
