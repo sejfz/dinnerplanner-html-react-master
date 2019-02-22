@@ -6,7 +6,7 @@ import "./SelectDish.css";
 class SelectDish extends Component {
   render() {
     return (
-      <div className="SelectDish" class="row">
+      <div className="SelectDish row">
         {/* We pass the model as property to the Sidebar component */}
         <Sidebar model={this.props.model} />
         <Dishes />

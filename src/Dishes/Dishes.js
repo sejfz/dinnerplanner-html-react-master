@@ -48,7 +48,7 @@ class Dishes extends Component {
         break;
       case "LOADED":
         dishesList = this.state.dishes.map(dish => (
-          <div class="cardDiv">
+          <div className="cardDiv" key={dish.id}>
             <img
               src={"https://spoonacular.com/recipeImages/" + dish.image}
               height="150px"
@@ -57,7 +57,7 @@ class Dishes extends Component {
             <br />
             <button
               type="button"
-              class="btn btn-outline-danger"
+              className="btn btn-outline-danger"
               value={dish.id}
             >
               Go to dish page
@@ -73,8 +73,8 @@ class Dishes extends Component {
     }
 
     return (
-      <div className="Dishes" class="col-sm-9">
-        <div class="input-group">
+      <div className="Dishes col-sm-9">
+        <div className="input-group">
           <input type="text" placeholder="Enter Key Words" />
           <select id="allTypes">
             <option value="all">All</option>
@@ -90,9 +90,9 @@ class Dishes extends Component {
             <option value="sauce">Sauce</option>
             <option value="soup">Soup</option>
           </select>
-          <span class="input-group-btn">
-            <button class="btn btn-search" type="button">
-              <i class="fa fa-search fa-fw" /> Search
+          <span className="input-group-btn">
+            <button className="btn btn-search" type="button">
+              <i className="fa fa-search fa-fw" /> Search
             </button>
           </span>
           <br />

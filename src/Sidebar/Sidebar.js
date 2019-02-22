@@ -39,22 +39,22 @@ class Sidebar extends Component {
 
   render() {
     return (
-      <div id="sideb" className="Sidebar" class="col-sm-3">
-        <nav id="navId" class="navbar navbar-expand-sm navbar-light">
+      <div id="sideb" className="Sidebar col-sm-3">
+        <nav id="navId" className="navbar navbar-expand-sm navbar-light">
           <button
             type="button"
-            class="navbar-toggler"
+            className="navbar-toggler"
             data-toggle="collapse"
             data-target="#navbarSupportedContent"
             aria-expanded="false"
             aria-controls="navbarSupportedContent"
             aria-label="Toggle navigation"
           >
-            <span class="navbar-toggler-icon" />
+            <span className="navbar-toggler-icon" />
           </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <div class="nav navbar-nav collapse navbar-collapse">
-              <h4 class="col-sm-12">My Dinner</h4>
+          <div className="collapse navbar-collapse" id="navbarSupportedContent">
+            <div className="nav navbar-nav collapse navbar-collapse">
+              <h4 className="col-sm-12">My Dinner</h4>
               <p>
                 People:
                 <input
@@ -66,22 +66,22 @@ class Sidebar extends Component {
                 <br />
                 Total number of guests: {this.state.numberOfGuests}
               </p>
-              <div id="summaryDiv" class="col-sm-12">
-                <div id="summaryBar" class="row">
-                  <p class="col-6">Dish Name</p>
-                  <p class="col-6" align="right">
+              <div id="summaryDiv" className="col-sm-12">
+                <div id="summaryBar" className="row">
+                  <p className="col-6">Dish Name</p>
+                  <p className="col-6" align="right">
                     Cost
                   </p>
                 </div>
               </div>
               <span id="menuDishes" />
               <br />
-              <div id="priceId" class="col-sm-12" />
-              <div align="right" class="col-sm-12" id="finalId">
+              <div id="priceId" className="col-sm-12" />
+              <div align="right" className="col-sm-12" id="finalId">
                 Total:
                 <span id="totalPrice" />
               </div>
-              <button class="btn btn-warning" id="confirmButtonId" disabled>
+              <button className="btn btn-warning" id="confirmButtonId" disabled>
                 Confirm Dinner
               </button>
             </div>
