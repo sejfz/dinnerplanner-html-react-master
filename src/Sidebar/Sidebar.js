@@ -81,7 +81,7 @@ class Sidebar extends Component {
                 Total:
                 <span id="totalPrice" />
               </div>
-              <button className="btn btn-warning" id="confirmButtonId" disabled>
+              <button className="btn btn-danger" id="confirmButtonId" disabled>
                 Confirm Dinner
               </button>
             </div>
