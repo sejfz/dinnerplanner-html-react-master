@@ -1,0 +1,10 @@
+#ingredView {
+  border-style: solid;
+  border-color: black;
+  background-color: rgb(253, 211, 211);
+}
+
+.container {
+  flex-direction: row;
+  justify-content: space-between;
+}

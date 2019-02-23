@@ -13,9 +13,26 @@ class DetailView extends Component {
     // e.g. API data loading or error
     this.state = {
       status: "LOADING",
-      dishId: ""
+      dishId: "",
+      numberOfGuests: modelInstance.getNumberOfGuests()
     };
   }
+
+  // this methods is called by React lifecycle when the
+  // component is actually shown to the user (mounted to DOM)
+  // that's a good place to setup model observer
+
+  // in our update function we modify the state which will
+  // cause the component to re-render
+  update() {
+    this.setState({
+      numberOfGuests: modelInstance.getNumberOfGuests()
+    });
+  }
+  // our handler for the input's on change event
+  onNumberOfGuestsChanged = e => {
+    modelInstance.setNumberOfGuests(e.target.value);
+  };
 
   // this methods is called by React lifecycle when the
   // component is actually shown to the user (mounted to DOM)
@@ -23,13 +40,13 @@ class DetailView extends Component {
   componentDidMount() {
     // when data is retrieved we update the state
     // this will cause the component to re-render
+    modelInstance.addObserver(this);
     modelInstance
-      .getSpecificDish(this.state.dishId)
+      .getSpecificDish("684100")
       .then(dishes => {
-        console.log("hello man wtf is up");
         this.setState({
           status: "LOADED",
-          dishes: dishes.results
+          dishes: [dishes]
         });
       })
       .catch(() => {
@@ -38,10 +55,12 @@ class DetailView extends Component {
         });
       });
   }
+  componentWillUnmount() {
+    modelInstance.removeObserver(this);
+  }
 
   render() {
     let dishesList = null;
-
     // depending on the state we either generate
     // useful message to the user or show the list
     // of returned dishes
@@ -51,33 +70,44 @@ class DetailView extends Component {
         break;
       case "LOADED":
         dishesList = this.state.dishes.map(dish => (
-          <div>
-            <div id="displayView" className="col-sm-6" style="display: none">
+          <div key={dish.id} className="row container">
+            <div id="displayView" className="col-sm-6">
               <h3>{dish.title}</h3>
-              <p>{dish.image}</p>
-              <button
-                id="backButton"
-                type="button"
-                className="btn btn-warning btn-sm"
-              >
-                Back to search
-              </button>
+              <img src={dish.image} />
+              <Link to="/search">
+                <button
+                  id="backButton"
+                  type="button"
+                  className="btn btn-danger btn-sm"
+                >
+                  Back to search
+                </button>
+              </Link>
               <h3>PREPARATION</h3>
               <p>{dish.instructions}</p>
             </div>
 
-            <div id="ingredView" className="col-sm-3" style="display: none">
+            <div id="ingredView" className="col-sm-3">
               <p>
-                <b>
-                  Ingredients for <span id="numpeep" /> people
-                </b>
+                <b>Ingredients for {this.state.numberOfGuests} people</b>
               </p>
-              {dish.extendedIngredients}
+              <ul>
+                {dish.extendedIngredients.map(ingred => (
+                  <li key={ingred.id}>
+                    {" "}
+                    {this.state.numberOfGuests * ingred.amount +
+                      " " +
+                      ingred.unit +
+                      " " +
+                      ingred.name}{" "}
+                  </li>
+                ))}
+              </ul>
 
               <button
                 id="addToMenu"
                 type="button"
-                className="btn btn-warning btn-sm"
+                className="btn btn-danger btn-sm"
               >
                 Add to menu
               </button>
@@ -90,7 +120,7 @@ class DetailView extends Component {
         break;
     }
 
-    return <div className="Dishes col-sm-9">{dishesList}</div>;
+    return <div className="currentDish col-sm-9">{dishesList}</div>;
   }
 }
 
