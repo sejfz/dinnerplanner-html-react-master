@@ -14,11 +14,13 @@ class Dishes extends Component {
     this.state = {
       status: "LOADING",
       value: "all",
-      filter: ""
+      filter: "",
+      currentId: modelInstance.getCurrentId()
     };
     this.valueUpdate = this.valueUpdate.bind(this);
     this.submitClick = this.submitClick.bind(this);
     this.filterUpdate = this.filterUpdate.bind(this);
+    this.currentIdUpdate = this.currentIdUpdate.bind(this);
   }
 
   valueUpdate(event) {
@@ -27,6 +29,11 @@ class Dishes extends Component {
 
   filterUpdate(event) {
     this.setState({ filter: event.target.value });
+  }
+
+  currentIdUpdate(event) {
+    modelInstance.setCurrentId(event.target.value);
+    this.setState({ currentId: modelInstance.getCurrentId() });
   }
 
   submitClick(event) {
@@ -79,6 +86,7 @@ class Dishes extends Component {
                 type="button"
                 className="btn btn-outline-danger"
                 value={dish.id}
+                onClick={this.currentIdUpdate}
               >
                 Go to dish page
               </button>

@@ -11,6 +11,7 @@ class DinnerModel extends ObservableModel {
   constructor() {
     super();
     this._numberOfGuests = 1;
+    this._currentId = null;
     this.getNumberOfGuests();
   }
 
@@ -34,6 +35,15 @@ class DinnerModel extends ObservableModel {
     this.notifyObservers();
   }
 
+  setCurrentId(num) {
+    this._currentId = num;
+    this.notifyObservers();
+  }
+
+  getCurrentId() {
+    return this._currentId;
+  }
+
   // API methods
 
   /**
@@ -52,7 +62,7 @@ class DinnerModel extends ObservableModel {
   }
 
   getSpecificDish(id) {
-    const detailUrl = BASE_URL + "/recipes/" + id + "/information";
+    const detailUrl = BASE_URL + "recipes/" + id + "/information";
     return fetch(detailUrl, httpOptions).then(this.processResponse);
   }
 

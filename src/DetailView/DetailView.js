@@ -14,7 +14,8 @@ class DetailView extends Component {
     this.state = {
       status: "LOADING",
       dishId: "",
-      numberOfGuests: modelInstance.getNumberOfGuests()
+      numberOfGuests: modelInstance.getNumberOfGuests(),
+      currentDishId: modelInstance.getCurrentId()
     };
   }
 
@@ -26,7 +27,8 @@ class DetailView extends Component {
   // cause the component to re-render
   update() {
     this.setState({
-      numberOfGuests: modelInstance.getNumberOfGuests()
+      numberOfGuests: modelInstance.getNumberOfGuests(),
+      currentDishId: modelInstance.getCurrentId()
     });
   }
   // our handler for the input's on change event
@@ -38,11 +40,12 @@ class DetailView extends Component {
   // component is actually shown to the user (mounted to DOM)
   // that's a good place to call the API and get the data
   componentDidMount() {
+    console.log(this.state.currentDishId);
     // when data is retrieved we update the state
     // this will cause the component to re-render
     modelInstance.addObserver(this);
     modelInstance
-      .getSpecificDish("684100")
+      .getSpecificDish(this.state.currentDishId)
       .then(dishes => {
         this.setState({
           status: "LOADED",
