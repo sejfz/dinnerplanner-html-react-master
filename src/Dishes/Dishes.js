@@ -81,7 +81,7 @@ class Dishes extends Component {
               width="200px"
             />
             <br />
-            <Link to="/details">
+            <Link to={"/details/" + dish.id}>
               <button
                 type="button"
                 className="btn btn-outline-danger"

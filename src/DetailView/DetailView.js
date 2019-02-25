@@ -15,7 +15,8 @@ class DetailView extends Component {
       status: "LOADING",
       dishId: "",
       numberOfGuests: modelInstance.getNumberOfGuests(),
-      currentDishId: modelInstance.getCurrentId()
+      currentDishId: modelInstance.getCurrentId(),
+      dishes: []
     };
   }
 
@@ -62,8 +63,14 @@ class DetailView extends Component {
     modelInstance.removeObserver(this);
   }
 
+  conslog(e) {
+    e.preventDefault();
+    console.log(e.target.value);
+  }
+
   render() {
     let dishesList = null;
+    let ingredCount = 0;
     // depending on the state we either generate
     // useful message to the user or show the list
     // of returned dishes
@@ -95,22 +102,36 @@ class DetailView extends Component {
                 <b>Ingredients for {this.state.numberOfGuests} people</b>
               </p>
               <ul>
-                {dish.extendedIngredients.map(ingred => (
-                  <li key={ingred.id}>
-                    {" "}
-                    {this.state.numberOfGuests * ingred.amount +
-                      " " +
-                      ingred.unit +
-                      " " +
-                      ingred.name}{" "}
-                  </li>
-                ))}
+                {dish.extendedIngredients.map(
+                  ingred => (
+                    (ingredCount += 1),
+                    (
+                      <li key={ingred.id}>
+                        {" "}
+                        {this.state.numberOfGuests * ingred.amount +
+                          " " +
+                          ingred.unit +
+                          " " +
+                          ingred.name +
+                          " " +
+                          this.state.numberOfGuests +
+                          " SEK"}{" "}
+                      </li>
+                    )
+                  )
+                )}
               </ul>
-
+              <p>
+                <strong>
+                  {"Total: " + this.state.numberOfGuests * ingredCount + " SEK"}
+                </strong>
+              </p>
               <button
                 id="addToMenu"
                 type="button"
                 className="btn btn-danger btn-sm"
+                value={this.state.dishes}
+                onClick={this.conslog}
               >
                 Add to menu
               </button>
