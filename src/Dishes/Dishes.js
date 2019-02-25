@@ -141,6 +141,7 @@ class Dishes extends Component {
         </div>
         <div align="center">
           <h3>Sample dishes</h3>
+          <p>Please use the search function to find more dishes!</p>
         </div>
         {dishesList}
       </div>
