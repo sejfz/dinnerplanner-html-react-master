@@ -18,6 +18,7 @@ class DetailView extends Component {
       currentDishId: modelInstance.getCurrentId(),
       dishes: []
     };
+    this.conslog = this.conslog.bind(this);
   }
 
   // this methods is called by React lifecycle when the
@@ -65,12 +66,13 @@ class DetailView extends Component {
 
   conslog(e) {
     e.preventDefault();
-    console.log(e.target.value);
+    console.log(this.state.dishes);
   }
 
   render() {
     let dishesList = null;
     let ingredCount = 0;
+    console.log(this.state.dishes);
     // depending on the state we either generate
     // useful message to the user or show the list
     // of returned dishes
@@ -130,7 +132,6 @@ class DetailView extends Component {
                 id="addToMenu"
                 type="button"
                 className="btn btn-danger btn-sm"
-                value={this.state.dishes}
                 onClick={this.conslog}
               >
                 Add to menu
