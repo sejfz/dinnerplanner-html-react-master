@@ -16,9 +16,9 @@ class DetailView extends Component {
       dishId: "",
       numberOfGuests: modelInstance.getNumberOfGuests(),
       currentDishId: modelInstance.getCurrentId(),
-      dishes: []
+      displayedDish: []
     };
-    this.conslog = this.conslog.bind(this);
+    this.selectedDishObj = this.selectedDishObj.bind(this);
   }
 
   // this methods is called by React lifecycle when the
@@ -38,20 +38,27 @@ class DetailView extends Component {
     modelInstance.setNumberOfGuests(e.target.value);
   };
 
+  selectedDishObj(e) {
+    e.preventDefault();
+    modelInstance.addDishToMenu(
+      this.state.currentDishId,
+      this.state.displayedDish
+    );
+  }
+
   // this methods is called by React lifecycle when the
   // component is actually shown to the user (mounted to DOM)
   // that's a good place to call the API and get the data
   componentDidMount() {
-    console.log(this.state.currentDishId);
     // when data is retrieved we update the state
     // this will cause the component to re-render
     modelInstance.addObserver(this);
     modelInstance
       .getSpecificDish(this.state.currentDishId)
-      .then(dishes => {
+      .then(displayedDish => {
         this.setState({
           status: "LOADED",
-          dishes: [dishes]
+          displayedDish: [displayedDish]
         });
       })
       .catch(() => {
@@ -64,24 +71,18 @@ class DetailView extends Component {
     modelInstance.removeObserver(this);
   }
 
-  conslog(e) {
-    e.preventDefault();
-    console.log(this.state.dishes);
-  }
-
   render() {
     let dishesList = null;
     let ingredCount = 0;
-    console.log(this.state.dishes);
     // depending on the state we either generate
     // useful message to the user or show the list
-    // of returned dishes
+    // of returned displayedDish
     switch (this.state.status) {
       case "LOADING":
         dishesList = <em>Loading...</em>;
         break;
       case "LOADED":
-        dishesList = this.state.dishes.map(dish => (
+        dishesList = this.state.displayedDish.map(dish => (
           <div key={dish.id} className="row container">
             <div id="displayView" className="col-sm-6">
               <h3>{dish.title}</h3>
@@ -132,7 +133,7 @@ class DetailView extends Component {
                 id="addToMenu"
                 type="button"
                 className="btn btn-danger btn-sm"
-                onClick={this.conslog}
+                onClick={this.selectedDishObj}
               >
                 Add to menu
               </button>

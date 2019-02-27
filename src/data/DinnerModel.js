@@ -12,6 +12,7 @@ class DinnerModel extends ObservableModel {
     super();
     this._numberOfGuests = 1;
     this._currentId = null;
+    this._yourDishes = [];
     this.getNumberOfGuests();
   }
 
@@ -23,6 +24,48 @@ class DinnerModel extends ObservableModel {
     return this._numberOfGuests;
   }
 
+  getFullMenu() {
+    return this._yourDishes;
+  }
+
+  getFullMenuPrice() {
+    let fullPrice = 0;
+    for (var dish in this._yourDishes) {
+      fullPrice += this._yourDishes[dish].extendedIngredients.length;
+    }
+    return fullPrice;
+  }
+
+  addDishToMenu(id, arr) {
+    var newDish;
+
+    for (var dish in arr) {
+      if (arr[dish].id == id) {
+        newDish = arr[dish];
+        for (dish in this._yourDishes) {
+          if (this._yourDishes[dish].id == newDish.id) {
+            this.removeDishFromMenu(
+              this._yourDishes[dish].id,
+              this._yourDishes
+            );
+          }
+        }
+        this._yourDishes.push(newDish);
+        console.log(this._yourDishes);
+      }
+    }
+    this.notifyObservers();
+  }
+
+  removeDishFromMenu(id, arr) {
+    for (var dish in arr) {
+      if (id == arr[dish].id) {
+        arr.splice(dish, 1);
+      }
+    }
+    this.notifyObservers();
+    return arr;
+  }
   /**
    * Set number of guests
    * @param {number} num

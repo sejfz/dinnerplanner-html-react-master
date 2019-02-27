@@ -8,7 +8,9 @@ class Sidebar extends Component {
 
     // we put on state the properties we want to use and modify in the component
     this.state = {
-      numberOfGuests: this.props.model.getNumberOfGuests()
+      numberOfGuests: this.props.model.getNumberOfGuests(),
+      fullMenuList: this.props.model.getFullMenu(),
+      fullMenuPrice: this.props.model.getFullMenuPrice()
     };
   }
 
@@ -29,7 +31,9 @@ class Sidebar extends Component {
   // cause the component to re-render
   update() {
     this.setState({
-      numberOfGuests: this.props.model.getNumberOfGuests()
+      numberOfGuests: this.props.model.getNumberOfGuests(),
+      fullMenuList: this.props.model.getFullMenu(),
+      fullMenuPrice: this.props.model.getFullMenuPrice()
     });
   }
 
@@ -75,17 +79,35 @@ class Sidebar extends Component {
                   </p>
                 </div>
               </div>
-              <span id="menuDishes" />
+              <div id="fullMenu">
+                {this.state.fullMenuList.map(dish => (
+                  <div className="row">
+                    <div className="col-6" align="left">
+                      {dish.title}
+                    </div>
+                    <div className="col-6" align="right">
+                      {dish.extendedIngredients.length *
+                        this.state.numberOfGuests +
+                        " SEK"}
+                    </div>
+                  </div>
+                ))}
+              </div>
               <br />
               <div id="priceId" className="col-sm-12" />
               <div align="right" className="col-sm-12" id="finalId">
-                Total:
-                <span id="totalPrice" />
+                <th>
+                  Total:
+                  {" " +
+                    this.state.numberOfGuests * this.state.fullMenuPrice +
+                    " "}
+                  SEK
+                </th>
               </div>
               <Link to="/confirmDinner">
-              <button className="btn btn-danger" id="confirmButtonId" disabled>
-                Confirm Dinner
-              </button>
+                <button className="btn btn-danger" id="confirmButtonId">
+                  Confirm Dinner
+                </button>
               </Link>
             </div>
           </div>
