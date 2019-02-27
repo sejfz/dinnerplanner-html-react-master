@@ -7,6 +7,7 @@ import "./App.css";
 import Dishes from "./Dishes/Dishes";
 import DetailView from "./DetailView/DetailView";
 import DishView from "./DishView/DishView";
+import ConfirmView from "./ConfirmView/ConfirmView";
 
 class App extends Component {
   constructor(props) {
@@ -35,8 +36,8 @@ class App extends Component {
             render={() => <DishView model={modelInstance} />}
           />
           <Route
-          //path="/confirmDinner"
-          // render={() => <ConfirmView model={modelInstance} />} 
+            path="/confirmDinner"
+            render={() => <ConfirmView model={modelInstance} />}
           />
         </header>
       </div>

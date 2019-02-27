@@ -96,13 +96,15 @@ class Sidebar extends Component {
               <br />
               <div id="priceId" className="col-sm-12" />
               <div align="right" className="col-sm-12" id="finalId">
-                <th>
-                  Total:
-                  {" " +
-                    this.state.numberOfGuests * this.state.fullMenuPrice +
-                    " "}
-                  SEK
-                </th>
+                <p>
+                  <strong>
+                    Total:
+                    {" " +
+                      this.state.numberOfGuests * this.state.fullMenuPrice +
+                      " "}
+                    SEK
+                  </strong>
+                </p>
               </div>
               <Link to="/confirmDinner">
                 <button className="btn btn-danger" id="confirmButtonId">
