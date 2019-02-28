@@ -16,7 +16,8 @@ class DetailView extends Component {
       dishId: "",
       numberOfGuests: modelInstance.getNumberOfGuests(),
       currentDishId: modelInstance.getCurrentId(),
-      displayedDish: []
+      displayedDish: [],
+      fullMenu: []
     };
     this.selectedDishObj = this.selectedDishObj.bind(this);
   }
@@ -30,7 +31,8 @@ class DetailView extends Component {
   update() {
     this.setState({
       numberOfGuests: modelInstance.getNumberOfGuests(),
-      currentDishId: modelInstance.getCurrentId()
+      currentDishId: modelInstance.getCurrentId(),
+      fullMenu: modelInstance.getFullMenu()
     });
   }
   // our handler for the input's on change event
