@@ -61,13 +61,15 @@ class ConfirmDishes extends Component {
           <h1 className="col-12">
             {"My Dinner: " + this.state.numberOfGuests + " people"}
           </h1>
+          
         </div>
         <Link to="/search">
           {" "}
+          <br />
           <button
             id="backToFeed"
             type="button"
-            className="btn btn-warning col-12"
+            className="btn btn-outline-danger col-3"
           >
             Go back and edit dinner
           </button>
@@ -83,9 +85,13 @@ class ConfirmDishes extends Component {
           </div>
 
           <div id="totcostView" className="col-sm-6">
-            <p>
-              Total: <span id="total" />
-            </p>
+            <strong>
+                Total:
+                {" " +
+                  this.state.numberOfGuests * this.state.fullMenuPrice +
+                  " "}
+                SEK
+            </strong>
           </div>
         </div>
         <div className="col-sm-12">
@@ -93,7 +99,7 @@ class ConfirmDishes extends Component {
             <button
               id="printButton"
               type="button"
-              className="btn btn-warning btn-sm"
+              className="btn btn-danger btn-sm"
             >
               Print Full Recipe
             </button>
