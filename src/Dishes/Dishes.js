@@ -25,6 +25,7 @@ class Dishes extends Component {
 
   valueUpdate(event) {
     this.setState({ value: event.target.value });
+    console.log(this.state.value);
   }
 
   filterUpdate(event) {
@@ -64,7 +65,7 @@ class Dishes extends Component {
 
   render() {
     let dishesList = null;
-
+    console.log(this.props);
     // depending on the state we either generate
     // useful message to the user or show the list
     // of returned dishes
@@ -81,7 +82,7 @@ class Dishes extends Component {
               width="200px"
             />
             <br />
-            <Link to={"/details/" + dish.id}>
+            <Link to={"/details/id=?" + dish.id}>
               <button
                 type="button"
                 className="btn btn-outline-danger"
@@ -128,15 +129,25 @@ class Dishes extends Component {
             <option value="sauce">Sauce</option>
             <option value="soup">Soup</option>
           </select>
-          <span className="input-group-btn">
-            <button
-              className="btn btn-search"
-              type="button"
-              onClick={this.submitClick}
-            >
-              <i className="fa fa-search fa-fw" /> Search
-            </button>
-          </span>
+          <Link
+            to={
+              "/search/query=?filter=" +
+              this.state.filter +
+              "&type=" +
+              this.state.value
+            }
+          >
+            <span className="input-group-btn">
+              <button
+                className="btn btn-search"
+                type="button"
+                onClick={this.submitClick}
+              >
+                <i className="fa fa-search fa-fw" /> Search
+              </button>
+            </span>
+          </Link>
+
           <br />
         </div>
         <div align="center">

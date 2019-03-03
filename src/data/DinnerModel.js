@@ -36,24 +36,20 @@ class DinnerModel extends ObservableModel {
     return fullPrice;
   }
 
-  addDishToMenu(id, arr) {
+  addDishToMenu(id, obj) {
     var newDish;
 
-    for (var dish in arr) {
-      if (arr[dish].id == id) {
-        newDish = arr[dish];
-        for (dish in this._yourDishes) {
-          if (this._yourDishes[dish].id == newDish.id) {
-            this.removeDishFromMenu(
-              this._yourDishes[dish].id,
-              this._yourDishes
-            );
-          }
+    if (obj.id == id) {
+      newDish = obj;
+      for (var dish in this._yourDishes) {
+        if (this._yourDishes[dish].id == newDish.id) {
+          this.removeDishFromMenu(this._yourDishes[dish].id, this._yourDishes);
         }
-        this._yourDishes.push(newDish);
-        console.log(this._yourDishes);
       }
+      this._yourDishes.push(newDish);
+      console.log(this._yourDishes);
     }
+
     this.notifyObservers();
   }
 

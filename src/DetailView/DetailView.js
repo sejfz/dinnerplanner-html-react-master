@@ -54,7 +54,6 @@ class DetailView extends Component {
     let unsortedList = [];
     let currentIngredients = this.state.displayedDish.extendedIngredients;
     for (var ingred in currentIngredients) {
-      console.log(unsortedList);
       unsortedList.push(
         <li key={currentIngredients[ingred].id}>
           {this.state.numberOfGuests * currentIngredients[ingred].amount +
@@ -84,11 +83,11 @@ class DetailView extends Component {
   componentDidMount() {
     // when data is retrieved we update the state
     // this will cause the component to re-render
+    var currentURL = window.location.search.replace("?", "");
     modelInstance.addObserver(this);
     modelInstance
-      .getSpecificDish(this.state.currentDishId)
+      .getSpecificDish(currentURL)
       .then(displayedDish => {
-        console.log(displayedDish);
         this.setState({
           status: "LOADED",
           displayedDish: displayedDish
@@ -105,7 +104,7 @@ class DetailView extends Component {
   }
 
   render() {
-    console.log(this.state.displayedDish);
+    console.log(this.props);
     var ingredCount = 0;
     switch (this.state.status) {
       case "LOADING":

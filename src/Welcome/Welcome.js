@@ -9,7 +9,7 @@ class Welcome extends Component {
       <div className="Welcome" align="center">
         <p>Welcome to Celias dinner planner!</p>
 
-        <Link to="/search">
+        <Link to="/search/query=?filter=&type=all">
           <button type="button" className="btn btn-outline-danger">
             Start planning
           </button>

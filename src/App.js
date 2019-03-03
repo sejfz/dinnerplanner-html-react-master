@@ -28,11 +28,11 @@ class App extends Component {
           {/* We rended diffrent component based on the path */}
           <Route exact path="/" component={Welcome} />
           <Route
-            path="/search"
+            path="/search/:query"
             render={() => <SelectDish model={modelInstance} />}
           />
           <Route
-            path="/details"
+            path="/details/:id"
             render={() => <DishView model={modelInstance} />}
           />
           <Route
