@@ -15,7 +15,7 @@ class DetailView extends Component {
       status: "LOADING",
       dishId: "",
       numberOfGuests: modelInstance.getNumberOfGuests(),
-      currentDishId: modelInstance.getCurrentId(),
+      currentDishId: null,
       displayedDish: null,
       fullMenu: []
     };
@@ -32,7 +32,6 @@ class DetailView extends Component {
   update() {
     this.setState({
       numberOfGuests: modelInstance.getNumberOfGuests(),
-      currentDishId: modelInstance.getCurrentId(),
       fullMenu: modelInstance.getFullMenu()
     });
   }
@@ -84,6 +83,9 @@ class DetailView extends Component {
     // when data is retrieved we update the state
     // this will cause the component to re-render
     var currentURL = window.location.search.replace("?", "");
+    this.setState({
+      currentDishId: currentURL
+    });
     modelInstance.addObserver(this);
     modelInstance
       .getSpecificDish(currentURL)
@@ -104,7 +106,6 @@ class DetailView extends Component {
   }
 
   render() {
-    console.log(this.props);
     var ingredCount = 0;
     switch (this.state.status) {
       case "LOADING":

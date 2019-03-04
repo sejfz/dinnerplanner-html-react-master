@@ -37,6 +37,14 @@ class Sidebar extends Component {
     });
   }
 
+  dishRemover = e => {
+    e.preventDefault();
+    this.props.model.removeDishFromMenu(
+      e.target.value,
+      this.state.fullMenuList
+    );
+  };
+
   // our handler for the input's on change event
   onNumberOfGuestsChanged = e => {
     this.props.model.setNumberOfGuests(e.target.value);
@@ -81,11 +89,19 @@ class Sidebar extends Component {
               </div>
               <div id="fullMenu">
                 {this.state.fullMenuList.map(dish => (
-                  <div className="row">
-                    <div className="col-6" align="left">
+                  <div className="row" key={dish.id}>
+                    <div className="col-4" align="left">
                       {dish.title}
                     </div>
-                    <div className="col-6" align="right">
+                    <button
+                      value={dish.id}
+                      className="col-4 btn btn-danger btn-sm"
+                      type="button"
+                      onClick={this.dishRemover}
+                    >
+                      Remove
+                    </button>
+                    <div className="col-4" align="right">
                       {dish.extendedIngredients.length *
                         this.state.numberOfGuests +
                         " SEK"}

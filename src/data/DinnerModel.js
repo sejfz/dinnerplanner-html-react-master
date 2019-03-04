@@ -49,7 +49,6 @@ class DinnerModel extends ObservableModel {
       this._yourDishes.push(newDish);
       console.log(this._yourDishes);
     }
-
     this.notifyObservers();
   }
 
