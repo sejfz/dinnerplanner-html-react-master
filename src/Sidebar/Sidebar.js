@@ -45,6 +45,11 @@ class Sidebar extends Component {
     );
   };
 
+  conslog(e) {
+    e.preventDefault();
+    console.log("waddup");
+  }
+
   // our handler for the input's on change event
   onNumberOfGuestsChanged = e => {
     this.props.model.setNumberOfGuests(e.target.value);
@@ -52,7 +57,7 @@ class Sidebar extends Component {
 
   render() {
     return (
-      <div id="sideb" className="Sidebar col-sm-3">
+      <div id="sideb" className="container col-sm-3" expand="sm">
         <nav id="navId" className="navbar navbar-expand-sm navbar-light">
           <button
             type="button"
@@ -62,6 +67,7 @@ class Sidebar extends Component {
             aria-expanded="false"
             aria-controls="navbarSupportedContent"
             aria-label="Toggle navigation"
+            onClick={this.conslog}
           >
             <span className="navbar-toggler-icon" />
           </button>
@@ -95,7 +101,7 @@ class Sidebar extends Component {
                     </div>
                     <button
                       value={dish.id}
-                      className="col-4 btn btn-danger btn-sm"
+                      className="removeButtonClass col-4 btn btn-danger btn-sm"
                       type="button"
                       onClick={this.dishRemover}
                     >

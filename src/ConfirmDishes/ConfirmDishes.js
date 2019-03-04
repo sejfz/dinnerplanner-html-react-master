@@ -13,7 +13,8 @@ class ConfirmDishes extends Component {
     // e.g. API data loading or error
     this.state = {
       numberOfGuests: modelInstance.getNumberOfGuests(),
-      fullMenu: modelInstance.getFullMenu()
+      fullMenu: modelInstance.getFullMenu(),
+      fullMenuPrice: modelInstance.getFullMenuPrice()
     };
     this.selectedDishObj = this.selectedDishObj.bind(this);
   }
@@ -27,7 +28,8 @@ class ConfirmDishes extends Component {
   update() {
     this.setState({
       numberOfGuests: modelInstance.getNumberOfGuests(),
-      fullMenu: modelInstance.getFullMenu()
+      fullMenu: modelInstance.getFullMenu(),
+      fullMenuPrice: modelInstance.getFullMenuPrice()
     });
   }
   // our handler for the input's on change event
@@ -61,7 +63,6 @@ class ConfirmDishes extends Component {
           <h1 className="col-12">
             {"My Dinner: " + this.state.numberOfGuests + " people"}
           </h1>
-          
         </div>
         <Link to="/search">
           {" "}
@@ -86,11 +87,9 @@ class ConfirmDishes extends Component {
 
           <div id="totcostView" className="col-sm-6">
             <strong>
-                Total:
-                {" " +
-                  this.state.numberOfGuests * this.state.fullMenuPrice +
-                  " "}
-                SEK
+              {"Total: " +
+                this.state.numberOfGuests * this.state.fullMenuPrice +
+                " SEK"}
             </strong>
           </div>
         </div>

@@ -22,3 +22,11 @@
   padding-left: 25px;
   padding-right: 25px;
 }
+
+.removeButtonClass {
+  height: 50px;
+}
+
+.navbar-collapse.collapse.in {
+  display: block !important;
+}
