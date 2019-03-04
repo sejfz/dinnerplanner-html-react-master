@@ -129,24 +129,16 @@ class Dishes extends Component {
             <option value="sauce">Sauce</option>
             <option value="soup">Soup</option>
           </select>
-          <Link
-            to={
-              "/search/query=?filter=" +
-              this.state.filter +
-              "&type=" +
-              this.state.value
-            }
-          >
-            <span className="input-group-btn">
-              <button
-                className="btn btn-search"
-                type="button"
-                onClick={this.submitClick}
-              >
-                <i className="fa fa-search fa-fw" /> Search
-              </button>
-            </span>
-          </Link>
+
+          <span className="input-group-btn">
+            <button
+              className="btn btn-search"
+              type="button"
+              onClick={this.submitClick}
+            >
+              <i className="fa fa-search fa-fw" /> Search
+            </button>
+          </span>
 
           <br />
         </div>
