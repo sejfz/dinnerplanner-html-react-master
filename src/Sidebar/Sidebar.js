@@ -63,7 +63,7 @@ class Sidebar extends Component {
             type="button"
             className="navbar-toggler"
             data-toggle="collapse"
-            data-target="#navbarSupportedContent"
+            data-target=".navbar-collapse"
             aria-expanded="false"
             aria-controls="navbarSupportedContent"
             aria-label="Toggle navigation"
@@ -101,7 +101,7 @@ class Sidebar extends Component {
                     </div>
                     <button
                       value={dish.id}
-                      className="removeButtonClass col-4 btn btn-danger btn-sm"
+                      className="btn btn-danger removeButtonClass col-sm-4"
                       type="button"
                       onClick={this.dishRemover}
                     >

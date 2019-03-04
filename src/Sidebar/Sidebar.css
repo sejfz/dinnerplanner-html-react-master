@@ -11,6 +11,10 @@
   padding-left: 8%;
 }
 
+.removeButtonClass {
+  height: 40px;
+}
+
 #summaryDiv {
   border-style: double;
   border-color: rgb(0, 0, 0);
