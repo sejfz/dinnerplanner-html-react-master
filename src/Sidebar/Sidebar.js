@@ -63,7 +63,7 @@ class Sidebar extends Component {
             type="button"
             className="navbar-toggler"
             data-toggle="collapse"
-            data-target=".navbar-collapse"
+            data-target="#navbarSupportedContent"
             aria-expanded="false"
             aria-controls="navbarSupportedContent"
             aria-label="Toggle navigation"
