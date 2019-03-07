@@ -49,6 +49,7 @@ class ConfirmDishes extends Component {
   // component is actually shown to the user (mounted to DOM)
   // that's a good place to call the API and get the data
   componentDidMount() {
+    console.log(document.cookie);
     modelInstance.addObserver(this);
   }
 
@@ -81,6 +82,14 @@ class ConfirmDishes extends Component {
               <div className="cardDiv" key={dish.id}>
                 <img src={dish.image} height="150px" width="200px" />
                 <div className="titleDiv">{dish.title}</div>
+
+                <strong>
+                  <p>
+                    {dish.extendedIngredients.length *
+                      this.state.numberOfGuests +
+                      " SEK"}
+                  </p>
+                </strong>
               </div>
             ))}
           </div>

@@ -13,6 +13,7 @@ class DinnerModel extends ObservableModel {
     this._numberOfGuests = 1;
     this._currentId = null;
     this._yourDishes = [];
+    this._idArray = [];
     this.getNumberOfGuests();
   }
 
@@ -24,7 +25,52 @@ class DinnerModel extends ObservableModel {
     return this._numberOfGuests;
   }
 
+  deleteSpecificCookie(cname) {
+    document.cookie =
+      cname + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+  }
+
+  newCookie() {
+    var str_arr = JSON.stringify(this._idArray);
+    document.cookie = "dishes=" + str_arr + "; path=/";
+  }
+
+  getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(";");
+    for (var i = 0; i < ca.length; i++) {
+      var c = ca[i];
+      while (c.charAt(0) == " ") {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return "";
+  }
+
+  decodeDish() {
+    if (this.getCookie("dishes")) {
+      var arr = JSON.parse(this.getCookie("dishes"));
+      for (var id in arr) {
+        this.getSpecificDish(arr[id])
+          .then(dish => {
+            this.addDishToMenu(dish.id, dish);
+          })
+          .catch(() => {
+            alert("There was an error");
+          });
+      }
+    }
+    return this._yourDishes;
+  }
+
   getFullMenu() {
+    if (this._yourDishes.length === 0) {
+      this.decodeDish();
+    }
     return this._yourDishes;
   }
 
@@ -35,7 +81,6 @@ class DinnerModel extends ObservableModel {
     }
     return fullPrice;
   }
-
   addDishToMenu(id, obj) {
     var newDish;
 
@@ -46,9 +91,10 @@ class DinnerModel extends ObservableModel {
           this.removeDishFromMenu(this._yourDishes[dish].id, this._yourDishes);
         }
       }
+      this._idArray.push(newDish.id);
       this._yourDishes.push(newDish);
-      console.log(this._yourDishes);
     }
+    this.newCookie();
     this.notifyObservers();
   }
 
@@ -57,10 +103,19 @@ class DinnerModel extends ObservableModel {
       if (id == arr[dish].id) {
         arr.splice(dish, 1);
       }
+      if (id == this._idArray[dish]) {
+        this._idArray.splice(dish, 1);
+        console.log(this._idArray);
+        this.newCookie();
+      }
+      if (this._idArray.length === 0) {
+        this.deleteSpecificCookie("dishes");
+      }
     }
+
     this.notifyObservers();
-    return arr;
   }
+
   /**
    * Set number of guests
    * @param {number} num
