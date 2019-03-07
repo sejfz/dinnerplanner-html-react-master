@@ -22,6 +22,9 @@ class DinnerModel extends ObservableModel {
    * @returns {number}
    */
   getNumberOfGuests() {
+    if (this.getCookie("numGuests")) {
+      this._numberOfGuests = parseInt(this.getCookie("numGuests"));
+    }
     return this._numberOfGuests;
   }
 
@@ -125,6 +128,7 @@ class DinnerModel extends ObservableModel {
     if (this._numberOfGuests < 1) {
       this._numberOfGuests = 1;
     }
+    document.cookie = "numGuests=" + this._numberOfGuests + "; path=/";
     this.notifyObservers();
   }
 
