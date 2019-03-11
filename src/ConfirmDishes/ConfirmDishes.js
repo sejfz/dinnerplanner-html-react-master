@@ -104,6 +104,7 @@ class ConfirmDishes extends Component {
         </div>
         <div className="col-sm-12">
           <div className="text-center">
+          <Link to="/fullRecipe">
             <button
               id="printButton"
               type="button"
@@ -111,6 +112,7 @@ class ConfirmDishes extends Component {
             >
               Print Full Recipe
             </button>
+            </Link>
           </div>
         </div>
       </div>

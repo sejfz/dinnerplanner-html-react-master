@@ -4,10 +4,9 @@ import Welcome from "./Welcome/Welcome";
 import modelInstance from "./data/DinnerModel";
 import SelectDish from "./SelectDish/SelectDish";
 import "./App.css";
-import Dishes from "./Dishes/Dishes";
-import DetailView from "./DetailView/DetailView";
 import DishView from "./DishView/DishView";
 import ConfirmView from "./ConfirmView/ConfirmView";
+import FullRecipe from "./FullRecipe/FullRecipe";
 
 class App extends Component {
   constructor(props) {
@@ -38,6 +37,10 @@ class App extends Component {
           <Route
             path="/confirmDinner"
             render={() => <ConfirmView model={modelInstance} />}
+          />
+          <Route
+            path="/fullRecipe"
+            render={() => <FullRecipe model={modelInstance} />}
           />
         </header>
       </div>

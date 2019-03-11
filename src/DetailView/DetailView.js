@@ -86,6 +86,7 @@ class DetailView extends Component {
     this.setState({
       currentDishId: currentURL
     });
+    
     modelInstance.addObserver(this);
     modelInstance
       .getSpecificDish(currentURL)
