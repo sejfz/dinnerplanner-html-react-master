@@ -128,18 +128,18 @@ class Dishes extends Component {
             <option value="sauce">Sauce</option>
             <option value="soup">Soup</option>
           </select>
-
-          <span className="input-group-btn">
-            <button
-              className="btn btn-search"
-              type="button"
-              onClick={this.submitClick}
-            >
+          <Link
+            to={
+              "/search/?query=" +
+              this.state.filter +
+              "&type=" +
+              this.state.value
+            }
+          >
+            <button className="btn btn-search" type="button">
               <i className="fa fa-search fa-fw" /> Search
             </button>
-          </span>
-
-          <br />
+          </Link>
         </div>
         <div align="center">
           <h3>Sample dishes</h3>
