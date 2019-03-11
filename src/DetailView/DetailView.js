@@ -86,7 +86,7 @@ class DetailView extends Component {
     this.setState({
       currentDishId: currentURL
     });
-    
+
     modelInstance.addObserver(this);
     modelInstance
       .getSpecificDish(currentURL)
@@ -107,7 +107,6 @@ class DetailView extends Component {
   }
 
   render() {
-    var ingredCount = 0;
     switch (this.state.status) {
       case "LOADING":
         return <em>Loading...</em>;

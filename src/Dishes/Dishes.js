@@ -23,9 +23,25 @@ class Dishes extends Component {
     this.currentIdUpdate = this.currentIdUpdate.bind(this);
   }
 
+  decodeUrlBar() {
+    var currentURL = window.location.search.replace("?", "");
+    var componentArray = [
+      currentURL.slice(0, currentURL.lastIndexOf("&")),
+      currentURL.slice(currentURL.lastIndexOf("&"))
+    ];
+    for (var elem in componentArray) {
+      var newElem = componentArray[elem].slice(
+        componentArray[elem].lastIndexOf("=")
+      );
+      componentArray[elem] = newElem.replace("=", "");
+    }
+    return componentArray;
+  }
+
   valueUpdate(event) {
     this.setState({ value: event.target.value });
     console.log(this.state.value);
+    console.log(event.target.value);
   }
 
   filterUpdate(event) {
@@ -37,24 +53,27 @@ class Dishes extends Component {
     this.setState({ currentId: modelInstance.getCurrentId() });
   }
 
-  submitClick(event) {
-    this.componentDidMount();
-    event.preventDefault();
+  submitClick() {
+    setTimeout(() => this.componentDidMount(), 100);
   }
 
   // this methods is called by React lifecycle when the
   // component is actually shown to the user (mounted to DOM)
   // that's a good place to call the API and get the data
   componentDidMount() {
+    var searchArray = this.decodeUrlBar();
+    console.log(searchArray);
+
     // when data is retrieved we update the state
     // this will cause the component to re-render
     modelInstance
-      .getAllDishes(this.state.filter, this.state.value)
+      .getAllDishes(searchArray[0], searchArray[1])
       .then(dishes => {
         this.setState({
           status: "LOADED",
           dishes: dishes.results
         });
+        console.log(this.decodeUrlBar());
       })
       .catch(() => {
         this.setState({
@@ -136,8 +155,12 @@ class Dishes extends Component {
               this.state.value
             }
           >
-            <button className="btn btn-search" type="button">
-              <i className="fa fa-search fa-fw" /> Search
+            <button
+              className="btn btn-search"
+              type="button"
+              onClick={this.submitClick}
+            >
+              Search
             </button>
           </Link>
         </div>
