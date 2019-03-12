@@ -12,6 +12,7 @@ class FullRecipe extends Component {
       fullMenuList: modelInstance.getFullMenu(),
       fullMenuPrice: modelInstance.getFullMenuPrice()
     };
+    this.showAllIngredients = this.showAllIngredients.bind(this);
   }
 
   update() {
@@ -25,6 +26,23 @@ class FullRecipe extends Component {
   onNumberOfGuestsChanged = e => {
     modelInstance.setNumberOfGuests(e.target.value);
   };
+
+  showAllIngredients(currentDish) {
+    let str = "";
+    let currentIngredients = currentDish.extendedIngredients;
+    for (var ingred in currentIngredients) {
+      if (
+        currentIngredients[currentIngredients.length - 1] ===
+        currentIngredients[ingred]
+      ) {
+        str += currentIngredients[ingred].name;
+      } else {
+        str += currentIngredients[ingred].name + ", ";
+      }
+    }
+
+    return str;
+  }
 
   // this methods is called by React lifecycle when the
   // component is actually shown to the user (mounted to DOM)
@@ -53,21 +71,22 @@ class FullRecipe extends Component {
 
         <div className="row">
           {this.state.fullMenuList.map(dish => (
-            <div className="row" key={dish.id}>
+            <div className="row summaryDiv" key={dish.id}>
               <img
+                id="summaryImage"
                 className="col-4"
                 src={dish.image}
-                height="150px"
-                width="200px"
+                height="300px"
               />
-              <div className="titleDiv">{dish.title}</div>
+              <div className="col-4">
+                <h4>{dish.title}</h4>
+                <p> {this.showAllIngredients(dish)} </p>
+              </div>
 
-              <strong>
-                <p>
-                  {dish.extendedIngredients.length * this.state.numberOfGuests +
-                    " SEK"}
-                </p>
-              </strong>
+              <div className="col-4">
+                <h4>Preparation</h4>
+                <p>{dish.instructions}</p>
+              </div>
             </div>
           ))}
         </div>

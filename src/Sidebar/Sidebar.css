@@ -2,6 +2,7 @@
   float: left;
   border-style: solid;
   border-color: rgb(0, 0, 0);
+  border-width: 5px;
   padding: 0%;
   padding-right: 10px;
 }
@@ -25,6 +26,12 @@
   font-weight: 560;
   padding-left: 25px;
   padding-right: 25px;
+}
+
+.selectedDish {
+  padding-bottom: 7px;
+  padding-top: 3px;
+  border-bottom-style: solid;
 }
 
 .navbar-collapse.collapse.in {

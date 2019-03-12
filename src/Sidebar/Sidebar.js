@@ -95,7 +95,7 @@ class Sidebar extends Component {
               </div>
               <div id="fullMenu">
                 {this.state.fullMenuList.map(dish => (
-                  <div className="row" key={dish.id}>
+                  <div className="row selectedDish" key={dish.id}>
                     <div className="col-4" align="left">
                       {dish.title}
                     </div>

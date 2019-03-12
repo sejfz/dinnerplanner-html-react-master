@@ -1,3 +1,17 @@
 h1 {
-    padding-bottom: 10px;
+  padding-bottom: 10px;
+}
+
+#summaryImage {
+  border-style: solid;
+  border-color: black;
+  padding: 0px;
+}
+
+.summaryDiv {
+  border-bottom: 3px;
+  border-color: black;
+  border-bottom-style: dotted;
+  padding-bottom: 30px;
+  padding-top: 20px;
 }
