@@ -8,10 +8,33 @@ class FullRecipe extends Component {
     super(props);
 
     this.state = {
-      numberOfGuests: this.props.model.getNumberOfGuests(),
-      fullMenuList: this.props.model.getFullMenu(),
-      fullMenuPrice: this.props.model.getFullMenuPrice()
+      numberOfGuests: modelInstance.getNumberOfGuests(),
+      fullMenuList: modelInstance.getFullMenu(),
+      fullMenuPrice: modelInstance.getFullMenuPrice()
     };
+  }
+
+  update() {
+    this.setState({
+      numberOfGuests: modelInstance.getNumberOfGuests(),
+      fullMenuList: modelInstance.getFullMenu(),
+      fullMenuPrice: modelInstance.getFullMenuPrice()
+    });
+  }
+  // our handler for the input's on change event
+  onNumberOfGuestsChanged = e => {
+    modelInstance.setNumberOfGuests(e.target.value);
+  };
+
+  // this methods is called by React lifecycle when the
+  // component is actually shown to the user (mounted to DOM)
+  // that's a good place to call the API and get the data
+  componentDidMount() {
+    modelInstance.addObserver(this);
+  }
+
+  componentWillUnmount() {
+    modelInstance.removeObserver(this);
   }
 
   render() {
@@ -27,6 +50,27 @@ class FullRecipe extends Component {
             Go back and edit dinner
           </button>
         </Link>
+
+        <div className="row">
+          {this.state.fullMenuList.map(dish => (
+            <div className="row" key={dish.id}>
+              <img
+                className="col-4"
+                src={dish.image}
+                height="150px"
+                width="200px"
+              />
+              <div className="titleDiv">{dish.title}</div>
+
+              <strong>
+                <p>
+                  {dish.extendedIngredients.length * this.state.numberOfGuests +
+                    " SEK"}
+                </p>
+              </strong>
+            </div>
+          ))}
+        </div>
       </div>
     );
   }
